@@ -1,5 +1,6 @@
 package com.example.ariel.testederepositorio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class PaginaInicialActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,9 +70,20 @@ public class PaginaInicialActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+//        PaginaLoginActivity paginaLoginActivity = new PaginaLoginActivity();
+//        if (paginaLoginActivity.usuarioLogado()) {
+//
+//        }
+
+
+//        noinspection SimplifiableIfStatement
+        if (id == R.id.action_login) {
+            Intent intent = new Intent(getApplicationContext(), PaginaLoginActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.action_sair) {
+            FirebaseAuth.getInstance().signOut();
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

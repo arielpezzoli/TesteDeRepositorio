@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--Cores padrão IFRS -->
+
+    <!--Análogas -->
+    <color name="corVerdeEscuro">#214127</color>
+    <color name="corPadraoVerde">#29A03F</color>
+    <color name="corVerdeClaro">#0DFF3A</color>
+
+    <!-- Complementares -->
+    <color name="corVermelhaEscura">#530512</color>
+    <color name="corVermelha">#A0293E</color>
+    <color name="corVerdeComplementar">#54EC70</color>
+
+    <!-- \\Fim Cores padrão IFRS \\-->
+
+    <color name="corEspecialLaranja">#EC9531</color>663EAD
+    <color name="corEspecialRoxa">#663EAD</color>
+
+
 </resources>
