@@ -69,14 +69,10 @@ public class PaginaInicialActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-
 //        PaginaLoginActivity paginaLoginActivity = new PaginaLoginActivity();
 //        if (paginaLoginActivity.usuarioLogado()) {
 //
 //        }
-
-
 //        noinspection SimplifiableIfStatement
         if (id == R.id.action_login) {
             Intent intent = new Intent(getApplicationContext(), PaginaLoginActivity.class);
@@ -95,19 +91,26 @@ public class PaginaInicialActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_pagina_inicial) {
+            Intent intent = new Intent(getApplicationContext(), PaginaInicialActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_cadastro) {
+            Intent intent = new Intent(getApplicationContext(), PaginaCadastroEventoActivity.class);
+            startActivity(intent);
         }
+//        else if (id == R.id.nav_camera) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
