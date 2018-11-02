@@ -1,5 +1,6 @@
 package com.example.ariel.testederepositorio;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -92,10 +94,12 @@ public class PaginaInicialActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_pagina_inicial) {
-            Intent intent = new Intent(getApplicationContext(), PaginaInicialActivity.class);
-            startActivity(intent);
+
         } else if (id == R.id.nav_cadastro) {
             Intent intent = new Intent(getApplicationContext(), PaginaCadastroEventoActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_list) {
+            Intent intent = new Intent(getApplicationContext(), ListarEventoActivity.class);
             startActivity(intent);
         }
 //        else if (id == R.id.nav_camera) {

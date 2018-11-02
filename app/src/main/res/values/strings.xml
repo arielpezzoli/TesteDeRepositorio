@@ -27,6 +27,8 @@
     <string name="action_sair">Sair</string>
 
 
-
+    <!--activity linha-->
+    <string name="action_edit">Editar</string>
+    <string name="action_delete">Excluir</string>
 
 </resources>

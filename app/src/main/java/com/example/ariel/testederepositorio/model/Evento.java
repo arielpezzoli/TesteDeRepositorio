@@ -2,7 +2,7 @@ package com.example.ariel.testederepositorio.model;
 
 public class Evento {
 
-    private Integer id_evento;
+    private String id_evento;
     private String titulo_evento;
     private String descricao_evento;
     private String local_evento;
@@ -21,7 +21,7 @@ public class Evento {
         this.data_evento = data_evento;
     }
 
-    public Evento(Integer id_evento, String titulo_evento, String descricao_evento, String local_evento, String horario_evento, String data_evento) {
+    public Evento(String id_evento, String titulo_evento, String descricao_evento, String local_evento, String horario_evento, String data_evento) {
         this.id_evento = id_evento;
         this.titulo_evento = titulo_evento;
         this.descricao_evento = descricao_evento;
@@ -31,11 +31,11 @@ public class Evento {
     }
 
 
-    public Integer getId_evento() {
+    public String getId_evento() {
         return id_evento;
     }
 
-    public void setId_evento(Integer id_evento) {
+    public void setId_evento(String id_evento) {
         this.id_evento = id_evento;
     }
 
