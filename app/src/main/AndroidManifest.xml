@@ -22,8 +22,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PaginaLoginActivity" />
-        <activity android:name=".PaginaCadastroEventoActivity"></activity>
+
+        <activity
+            android:name=".PaginaLoginActivity"
+            android:parentActivityName=".PaginaInicialActivity">
+        </activity>
+
+        <activity
+            android:name=".PaginaCadastroEventoActivity"
+            android:parentActivityName=".PaginaInicialActivity">
+        </activity>
+
     </application>
 
 </manifest>
