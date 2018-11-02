@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ariel.testederepositorio">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -22,8 +22,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PaginaLoginActivity" />
-        <activity android:name=".PaginaCadastroEventoActivity"></activity>
+        <activity
+            android:name=".PaginaLoginActivity"
+            android:parentActivityName=".PaginaInicialActivity" />
+        <activity
+            android:name=".PaginaCadastroEventoActivity"
+            android:parentActivityName=".PaginaInicialActivity" />
+
+        <activity
+            android:name=".SearchActivity"
+            android:parentActivityName=".PaginaInicialActivity"/>
+
+        <activity
+            android:name=".AtualizarEventoActivity"
+            android:parentActivityName=".PaginaInicialActivity"/>
+
+        <activity
+            android:name=".ListarEventoActivity"
+            android:parentActivityName=".PaginaInicialActivity"/>
     </application>
 
 </manifest>
