@@ -23,8 +23,8 @@ public class AtualizarEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atualizar_evento);
 
-
         Intent intencao = getIntent();
+
         id = intencao.getStringExtra("id_evento");
         String titulo_evento = intencao.getStringExtra("titulo_evento");
         String descricao_evento = intencao.getStringExtra("descricao_evento");
@@ -58,7 +58,6 @@ public class AtualizarEventoActivity extends AppCompatActivity {
                 String data = ((TextView) findViewById(R.id.textoRecebidoData)).getText().toString();
 
 
-
                 final DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
 
                 HashMap<String, Object> map = new HashMap<>();
@@ -76,6 +75,7 @@ public class AtualizarEventoActivity extends AppCompatActivity {
 
                 reference.child(id).updateChildren(map);
                 Toast.makeText(getApplicationContext(), "atualizado", Toast.LENGTH_LONG);
+
                 finish();
 
 
@@ -83,5 +83,6 @@ public class AtualizarEventoActivity extends AppCompatActivity {
         });
 
     }
+
 
 }

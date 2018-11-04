@@ -8,4 +8,7 @@
     tools:context=".PaginaInicialActivity"
     tools:showIn="@layout/app_bar_pagina_inicial">
 
+
+
+
 </android.support.constraint.ConstraintLayout>

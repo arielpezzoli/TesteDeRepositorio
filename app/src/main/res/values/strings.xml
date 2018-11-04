@@ -20,7 +20,7 @@
     <string name="local_evento">Local Evento</string>
     <string name="horario_evento">Horário Evento</string>
     <string name="data_evento">Data Evento</string>
-    <string name="btn_cadastrar_evento">Cadastrar</string>
+    <string name="cadUser_btnCad">CADASTRAR</string>
 
 
     <string name="action_login">Login</string>
@@ -31,4 +31,21 @@
     <string name="action_edit">Editar</string>
     <string name="action_delete">Excluir</string>
 
+    <!--activity atualizar evento-->
+    <string name="textoRecebidoTitulo">Titulo</string>
+    <string name="textoRecebidoDescricao">Descricão</string>
+    <string name="textoRecebidoLocal">Local</string>
+    <string name="textoRecebidoHorario">Horário</string>
+    <string name="textoRecebidoData">Data</string>
+
+
+    <!--pagina_inicial.xml-->
+    <string name="action_search">Pesquisar</string>
+
+    <!--activity linha-->
+    <string name="linhaTitulo">Titulo Evento</string>
+    <string name="linhaDescricao">Descrição Evento</string>
+    <string name="linhaLocal">Local Evento</string>
+    <string name="linhaData">Data Evento</string>
+    <string name="linhaHorario">Horario Evento</string>
 </resources>
