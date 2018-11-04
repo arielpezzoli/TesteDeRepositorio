@@ -105,7 +105,7 @@ public class LinhaConsultaAdapter extends BaseAdapter {
                     String mensagem = "Registro excluído com sucesso!";
                     //usa o objeto produto para fazer a exclusão
                     final Evento produto = eventos.get(position);
-                    final DatabaseReference reference = ConfiguraFirebase.getNo("produtos");
+                    final DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -132,7 +132,6 @@ public class LinhaConsultaAdapter extends BaseAdapter {
                     //EXERCÍCIO FAZER A TAREFA DE EDIÇÃO USANDO A LÓGICA DA EXCLUSÃO
 
                     final Evento evento = eventos.get(position);
-                    Log.d("msg", "1");
 
                     Intent intent = new Intent(listarEventos, AtualizarEventoActivity.class);
                     intent.putExtra("id_evento",evento.getId_evento());

@@ -36,12 +36,12 @@ public class SearchActivity extends AppCompatActivity {
         //pega o valor que veio pela intenção
         Intent intent = getIntent();
         String parametroPesquisa = intent.getStringExtra("pesquisa");
-        Log.d("MSG", "s = " + parametroPesquisa);
+//        Log.d("MSG", "s = " + parametroPesquisa);
 
         DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
         listEventos = new ArrayList<>();
         //ordenar os resultados pelo nome e mostrar somente os registros que possuem o nome passado como parâmetro na janela de pesquisa
-        Query pesquisa = reference.orderByChild("nome").equalTo(parametroPesquisa);
+        Query pesquisa = reference.orderByChild("titulo_evento").equalTo(parametroPesquisa);
 
         pesquisa.addValueEventListener(new ValueEventListener() {
             @Override

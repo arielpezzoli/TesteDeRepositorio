@@ -41,6 +41,7 @@ public class PaginaCadastroEventoActivity extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 Toast.makeText(PaginaCadastroEventoActivity.this, "Sucesso ao cadastrar o evento!", Toast.LENGTH_SHORT).show();
                 limparCampos();
+                finish();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
@@ -52,10 +53,10 @@ public class PaginaCadastroEventoActivity extends AppCompatActivity {
     }
 
     private void limparCampos() {
-        ((EditText) findViewById(R.id.titulo_evento)).setText("Titulo Evento");
-        ((EditText) findViewById(R.id.descricao_evento)).setText("Descrição Evento");
-        ((EditText) findViewById(R.id.local_evento)).setText("Local Evento");
-        ((EditText) findViewById(R.id.horario_evento)).setText("Horário Evento");
-        ((EditText) findViewById(R.id.data_evento)).setText("Data Evento");
+        ((EditText) findViewById(R.id.titulo_evento)).setText("");
+        ((EditText) findViewById(R.id.descricao_evento)).setText("");
+        ((EditText) findViewById(R.id.local_evento)).setText("");
+        ((EditText) findViewById(R.id.horario_evento)).setText("");
+        ((EditText) findViewById(R.id.data_evento)).setText("");
     }
 }
