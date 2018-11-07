@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity {
+
     private ArrayList<Evento> listEventos = new ArrayList<>();
     ListView lista = null;
     ArrayAdapter<Evento> listAdapter = null;
@@ -33,10 +34,9 @@ public class SearchActivity extends AppCompatActivity {
         lista = findViewById(R.id.listaEventosPesquisa);
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listEventos);
 
-        //pega o valor que veio pela intenção
+        //pega o valor que veio pela intenção da pagina inicial activity
         Intent intent = getIntent();
         String parametroPesquisa = intent.getStringExtra("pesquisa");
-//        Log.d("MSG", "s = " + parametroPesquisa);
 
         DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
         listEventos = new ArrayList<>();
@@ -46,7 +46,7 @@ public class SearchActivity extends AppCompatActivity {
         pesquisa.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("MSG", "Dados do evento => " + dataSnapshot.getValue().toString());
+//                Log.d("MSG", "Dados do evento => " + dataSnapshot.getValue().toString());
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     //para buscar todos os nós filhos de produtos
                     Evento evento = ds.getValue(Evento.class);

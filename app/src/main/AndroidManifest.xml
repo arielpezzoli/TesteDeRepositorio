@@ -28,18 +28,15 @@
         <activity
             android:name=".PaginaCadastroEventoActivity"
             android:parentActivityName=".PaginaInicialActivity" />
-
         <activity
             android:name=".SearchActivity"
-            android:parentActivityName=".PaginaInicialActivity"/>
-
+            android:parentActivityName=".PaginaInicialActivity" />
         <activity
             android:name=".AtualizarEventoActivity"
-            android:parentActivityName=".PaginaInicialActivity"/>
-
+            android:parentActivityName=".PaginaInicialActivity" />
         <activity
             android:name=".ListarEventoActivity"
-            android:parentActivityName=".PaginaInicialActivity"/>
+            android:parentActivityName=".PaginaInicialActivity" />
     </application>
 
 </manifest>

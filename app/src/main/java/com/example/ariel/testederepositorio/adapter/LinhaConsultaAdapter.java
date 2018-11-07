@@ -3,7 +3,6 @@ package com.example.ariel.testederepositorio.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +36,7 @@ public class LinhaConsultaAdapter extends BaseAdapter {
 
     private SearchActivity pesquisarEventos;
 
+
     //Construtor que recebe a ativida como parametro e a lista de tarefas que vai retornar do BD
     public LinhaConsultaAdapter(ListarEventoActivity listarEventos, ArrayList<Evento> eventos) {
         this.eventos = eventos;
@@ -67,7 +67,7 @@ public class LinhaConsultaAdapter extends BaseAdapter {
         return position;
     }
 
-    //Método converte os valoes de um item  da lista de Tarefas para uma linha do ListView
+    //Método converte os valores de um item  da lista de Tarefas para uma linha do ListView
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         //Cria um objeto para acessar o layout activity_linha.xml
@@ -134,9 +134,9 @@ public class LinhaConsultaAdapter extends BaseAdapter {
                     final Evento evento = eventos.get(position);
 
                     Intent intent = new Intent(listarEventos, AtualizarEventoActivity.class);
-                    intent.putExtra("id_evento",evento.getId_evento());
-                    intent.putExtra("titulo_evento",textViewTituloEvento.getText());
-                    intent.putExtra("descricao_evento",textViewDescricaoEvento.getText());
+                    intent.putExtra("id_evento", evento.getId_evento());
+                    intent.putExtra("titulo_evento", textViewTituloEvento.getText());
+                    intent.putExtra("descricao_evento", textViewDescricaoEvento.getText());
                     intent.putExtra("local_evento", textViewLocalEvento.getText());
                     intent.putExtra("horario_evento", textViewHorarioEvento.getText());
                     intent.putExtra("data_evento", textViewDataEvento.getText());

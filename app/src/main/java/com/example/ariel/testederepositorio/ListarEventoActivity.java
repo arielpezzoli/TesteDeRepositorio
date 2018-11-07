@@ -21,6 +21,7 @@ public class ListarEventoActivity extends ListActivity {
     private ArrayList<Evento> listEventos = new ArrayList<>();
     ListView lista = null;
     ArrayAdapter<Evento> listAdapter = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class ListarEventoActivity extends ListActivity {
         listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listEventos);
 
         DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
-        listEventos = new ArrayList<>();
+//        listEventos = new ArrayList<>();
         //associar os eventos ao nó produtos para poder buscar os dados
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -38,7 +39,7 @@ public class ListarEventoActivity extends ListActivity {
             //DataSnapshot é o retorno do Firebase => resultado da consulta
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //para buscar todos os nós filhos de produtos
+                    //para buscar todos os nós filhos de eventos
                     Evento evento = ds.getValue(Evento.class);
                     evento.setId_evento(ds.getKey());
                     listEventos.add(evento);
