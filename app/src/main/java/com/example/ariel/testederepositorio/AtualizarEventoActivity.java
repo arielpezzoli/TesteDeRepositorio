@@ -74,6 +74,7 @@ public class AtualizarEventoActivity extends AppCompatActivity {
                     map.put("data_evento", data);
 
                 reference.child(id).updateChildren(map);
+//                reference.
                 Toast.makeText(getApplicationContext(), "atualizado", Toast.LENGTH_LONG);
 
                 finish();

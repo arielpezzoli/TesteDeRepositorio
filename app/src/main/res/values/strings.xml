@@ -48,4 +48,18 @@
     <string name="linhaLocal">Local Evento</string>
     <string name="linhaData">Data Evento</string>
     <string name="linhaHorario">Horario Evento</string>
+
+    <!--activity pagina inicial drawer-->
+    <string name="lblPaginaInicial">Pagina Inicial</string>
+    <string name="lblCadastrarEvento">Cadastrar Evento</string>
+    <string name="lblListartEvento">Listar Evento</string>
+    <string name="lblListarEventoComCard">Listar Evento com Card</string>
+
+    <!--layout adapter list-->
+    <string name="textViewTituloEvento">Titulo evento</string>
+    <string name="textViewDescricaoEvento">Descricao Evento</string>
+    <string name="textViewLocalEvento">Local Evento</string>
+    <string name="textViewHorarioEvento">Horario Evento</string>
+    <string name="textViewDataEvento">Data Evento</string>
+
 </resources>

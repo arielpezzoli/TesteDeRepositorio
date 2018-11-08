@@ -28,14 +28,22 @@
         <activity
             android:name=".PaginaCadastroEventoActivity"
             android:parentActivityName=".PaginaInicialActivity" />
+        <!--<activity-->
+            <!--android:name=".SearchActivity"-->
+            <!--android:parentActivityName=".PaginaInicialActivity" />-->
         <activity
-            android:name=".SearchActivity"
+            android:name=".SearchCardActivity"
             android:parentActivityName=".PaginaInicialActivity" />
         <activity
             android:name=".AtualizarEventoActivity"
             android:parentActivityName=".PaginaInicialActivity" />
-        <activity
-            android:name=".ListarEventoActivity"
+        <!--<activity-->
+            <!--android:name=".ListarEventoActivity"-->
+            <!--android:parentActivityName=".PaginaInicialActivity" />-->
+
+
+
+        <activity android:name=".ListarEventoRecycler"
             android:parentActivityName=".PaginaInicialActivity" />
     </application>
 

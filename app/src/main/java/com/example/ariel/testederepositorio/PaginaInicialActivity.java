@@ -1,15 +1,9 @@
 package com.example.ariel.testederepositorio;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,22 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
-import com.example.ariel.testederepositorio.adapter.LinhaConsultaAdapter;
-import com.example.ariel.testederepositorio.dao.ConfiguraFirebase;
-import com.example.ariel.testederepositorio.model.Evento;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 
 public class PaginaInicialActivity extends AppCompatActivity
@@ -54,15 +34,6 @@ public class PaginaInicialActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -72,49 +43,6 @@ public class PaginaInicialActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-//**************************
-//**************************
-//LISTANDO DADOS FIREBASE
-//        listEventos = new ArrayList<>();
-//        lista = findViewById(R.id.listaEventosPesquisaPaginaInicial);
-//        listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listEventos);
-//
-//        //pega o valor que veio pela intenção
-//        Intent intent = getIntent();
-//        String parametroPesquisa = intent.getStringExtra("pesquisa");
-////        Log.d("MSG", "s = " + parametroPesquisa);
-//
-//        DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
-//        listEventos = new ArrayList<>();
-//
-//        //ordenar os resultados pelo nome e mostrar somente os registros que possuem o nome passado como parâmetro na janela de pesquisa
-//        Query pesquisa = reference.orderByChild("titulo_evento").equalTo(parametroPesquisa);
-//
-//        pesquisa.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Log.d("MSG", "Dados do evento => " + dataSnapshot.getValue().toString());
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    //para buscar todos os nós filhos de produtos
-//                    Evento evento = ds.getValue(Evento.class);
-//                    evento.setId_evento(ds.getKey());
-//                    listEventos.add(evento);
-//                }
-//                lista.setAdapter(new LinhaConsultaAdapter(PaginaInicialActivity.this, listEventos));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
-//FIM LISTAGEM DE DADOS
-//*****************************
-//*****************************
 
     }
 
@@ -179,23 +107,13 @@ public class PaginaInicialActivity extends AppCompatActivity
         } else if (id == R.id.nav_cadastro) {
             Intent intent = new Intent(getApplicationContext(), PaginaCadastroEventoActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_list) {
-            Intent intent = new Intent(getApplicationContext(), ListarEventoActivity.class);
+//        } else if (id == R.id.nav_list) {
+//            Intent intent = new Intent(getApplicationContext(), ListarEventoActivity.class);
+//            startActivity(intent);
+        } else if (id == R.id.nav_card_list) {
+            Intent intent = new Intent(getApplicationContext(), ListarEventoRecycler.class);
             startActivity(intent);
         }
-//        else if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -205,7 +123,8 @@ public class PaginaInicialActivity extends AppCompatActivity
     @Override
     public boolean onQueryTextSubmit(String s) {
         Log.d("MSG", "query s => " + s);
-        Intent intent = new Intent(PaginaInicialActivity.this, SearchActivity.class);
+//        Intent intent = new Intent(PaginaInicialActivity.this, SearchActivity.class);
+        Intent intent = new Intent(PaginaInicialActivity.this, SearchCardActivity.class);
         intent.putExtra("pesquisa", s);
         startActivity(intent);
         return false;

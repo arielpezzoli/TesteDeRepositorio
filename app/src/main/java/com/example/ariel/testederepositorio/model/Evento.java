@@ -1,5 +1,20 @@
 package com.example.ariel.testederepositorio.model;
 
+import android.support.annotation.NonNull;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+//import com.example.ariel.testederepositorio.ListarEventoActivity;
+//import com.example.ariel.testederepositorio.adapter.LinhaConsultaAdapter;
+import com.example.ariel.testederepositorio.dao.ConfiguraFirebase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Evento {
 
     private String id_evento;
@@ -78,4 +93,17 @@ public class Evento {
     public void setData_evento(String data_evento) {
         this.data_evento = data_evento;
     }
+
+
+    public static List<Evento> inicializaLista() {
+        List<Evento> eventos = new ArrayList<>();
+        eventos.add(new Evento("titulo1", "desc1", "local1", "horario1", "data"));
+        eventos.add(new Evento("titulo2", "desc2", "local1", "horario1", "data"));
+        eventos.add(new Evento("titulo3", "desc3", "local1", "horario1", "data"));
+        eventos.add(new Evento("titulo4", "desc4", "local1", "horario1", "data"));
+        eventos.add(new Evento("titulo5", "desc5", "local1", "horario1", "data"));
+        return eventos;
+    }
+
+
 }
