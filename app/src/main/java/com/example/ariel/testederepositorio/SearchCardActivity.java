@@ -65,7 +65,8 @@ public class SearchCardActivity extends AppCompatActivity implements ClickRecycl
         });
 
 
-        adapter = new MyAdapterCard(this, listaEventos, this);
+//        adapter = new MyAdapterCard(this, listaEventos, this);
+        adapter = new MyAdapterCard(SearchCardActivity.this, listaEventos);
         recyclerView.setAdapter(adapter);
 
     }

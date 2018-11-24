@@ -1,14 +1,17 @@
 package com.example.ariel.testederepositorio;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.EventLog;
+import android.util.Log;
 
 import com.example.ariel.testederepositorio.adapter.MyAdapterCard;
 import com.example.ariel.testederepositorio.model.Evento;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +24,6 @@ public class ListarEventoRecycler extends AppCompatActivity implements ClickRecy
 
     private RecyclerView recyclerView;
     MyAdapterCard adapter;
-    //    private List<User> listausers = new ArrayList<>();
     private ArrayList<Evento> listaEventos = new ArrayList<>();
 
 
@@ -38,6 +40,7 @@ public class ListarEventoRecycler extends AppCompatActivity implements ClickRecy
 //            listausers.add(ListaRecyclerCard.carrega());
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("eventos");
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             //é chamado sempre que consegue recuperar algum dado
@@ -48,8 +51,9 @@ public class ListarEventoRecycler extends AppCompatActivity implements ClickRecy
                     Evento evento = ds.getValue(Evento.class);
                     evento.setId_evento(ds.getKey());
                     listaEventos.add(evento);
+                    Log.d("Evento:", "evento"+evento.toString());
                 }
-//                    lista.setAdapter(new LinhaConsultaAdapter(ListarEventoActivity.this, listUsuarios));
+                recyclerView.setAdapter(new MyAdapterCard(ListarEventoRecycler.this, listaEventos));
             }
 
             @Override
@@ -58,11 +62,11 @@ public class ListarEventoRecycler extends AppCompatActivity implements ClickRecy
             }
         });
 
-
-        adapter = new MyAdapterCard(this, listaEventos, this);
+//        adapter = new MyAdapterCard(this, listaEventos, this);
+        adapter = new MyAdapterCard(ListarEventoRecycler.this, listaEventos);
         recyclerView.setAdapter(adapter);
-
     }
+
 
     @Override
     public void onCustomClick(Object object) {

@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ariel.testederepositorio.AtualizarEventoActivity;
 import com.example.ariel.testederepositorio.ClickRecycler;
 import com.example.ariel.testederepositorio.ListarEventoRecycler;
 import com.example.ariel.testederepositorio.R;
+import com.example.ariel.testederepositorio.SearchCardActivity;
 import com.example.ariel.testederepositorio.dao.ConfiguraFirebase;
 import com.example.ariel.testederepositorio.model.Evento;
 import com.google.firebase.database.DataSnapshot;
@@ -30,13 +32,28 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
     Context contexto;
     private List<Evento> listaEventos;
 
-//    ListarEventoRecycler listarEventoRecycler;
+    ListarEventoRecycler listarEventoRecycler;
+    SearchCardActivity searchCardActivity;
 
     public MyAdapterCard(Context ctx, List<Evento> list, ClickRecycler clickRecycler) {
         this.contexto = ctx;
         this.listaEventos = list;
         this.clickRecycler = clickRecycler;
     }
+
+    public MyAdapterCard(SearchCardActivity searchCardActivity, List<Evento> list) {
+        this.searchCardActivity = searchCardActivity;
+        this.listaEventos = list;
+    }
+
+
+    public MyAdapterCard(ListarEventoRecycler listarEventoRecycler, List<Evento> list) {
+        this.listarEventoRecycler = listarEventoRecycler;
+        this.listaEventos = list;
+    }
+
+
+
 
     @Override
     public MyViewHolderCard onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -59,15 +76,17 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
             public void onClick(View v) {
                 String mensagem = "Registro excluído com sucesso!";
                 //usa o objeto produto para fazer a exclusão
-                final Evento produto = listaEventos.get(position);
+                final Evento evento = listaEventos.get(position);
                 final DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
+
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (!listaEventos.isEmpty()) {
                             listaEventos.remove(position);
-                            reference.child(produto.getId_evento()).removeValue();
+                            reference.child(evento.getId_evento()).removeValue();
                             notifyList();
+
                         }
                     }
 
@@ -86,7 +105,7 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
                 final Evento evento = listaEventos.get(position);
 
-                Intent intent = new Intent(contexto, AtualizarEventoActivity.class);
+                Intent intent = new Intent(listarEventoRecycler, AtualizarEventoActivity.class);
                 intent.putExtra("id_evento", evento.getId_evento());
                 intent.putExtra("titulo_evento", evento.getTitulo_evento());
                 intent.putExtra("descricao_evento", evento.getDescricao_evento());
@@ -94,7 +113,8 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
                 intent.putExtra("horario_evento", evento.getHorario_evento());
                 intent.putExtra("data_evento", evento.getData_evento());
 //                    Log.d("msg", "2");
-                contexto.startActivity(intent);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                listarEventoRecycler.startActivity(intent);
 
             }
         });
