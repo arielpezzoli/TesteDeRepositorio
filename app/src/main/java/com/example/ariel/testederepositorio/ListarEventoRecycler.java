@@ -51,7 +51,7 @@ public class ListarEventoRecycler extends AppCompatActivity implements ClickRecy
                     Evento evento = ds.getValue(Evento.class);
                     evento.setId_evento(ds.getKey());
                     listaEventos.add(evento);
-                    Log.d("Evento:", "evento"+evento.toString());
+//                    Log.d("Evento:", "evento"+evento.toString());
                 }
                 recyclerView.setAdapter(new MyAdapterCard(ListarEventoRecycler.this, listaEventos));
             }
@@ -65,14 +65,15 @@ public class ListarEventoRecycler extends AppCompatActivity implements ClickRecy
 //        adapter = new MyAdapterCard(this, listaEventos, this);
         adapter = new MyAdapterCard(ListarEventoRecycler.this, listaEventos);
         recyclerView.setAdapter(adapter);
+
     }
 
 
     @Override
     public void onCustomClick(Object object) {
         System.out.println("funciona");
-        Evento p = (Evento) object;
-        System.out.println("PEssoa = " + p.toString());
+        Evento evento = (Evento) object;
+        System.out.println("PEssoa = " + evento.toString());
     }
 
 }

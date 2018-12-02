@@ -95,15 +95,15 @@ public class Evento {
     }
 
 
-    public static List<Evento> inicializaLista() {
-        List<Evento> eventos = new ArrayList<>();
-        eventos.add(new Evento("titulo1", "desc1", "local1", "horario1", "data"));
-        eventos.add(new Evento("titulo2", "desc2", "local1", "horario1", "data"));
-        eventos.add(new Evento("titulo3", "desc3", "local1", "horario1", "data"));
-        eventos.add(new Evento("titulo4", "desc4", "local1", "horario1", "data"));
-        eventos.add(new Evento("titulo5", "desc5", "local1", "horario1", "data"));
-        return eventos;
-    }
+//    public static List<Evento> inicializaLista() {
+//        List<Evento> eventos = new ArrayList<>();
+//        eventos.add(new Evento("titulo1", "desc1", "local1", "horario1", "data"));
+//        eventos.add(new Evento("titulo2", "desc2", "local1", "horario1", "data"));
+//        eventos.add(new Evento("titulo3", "desc3", "local1", "horario1", "data"));
+//        eventos.add(new Evento("titulo4", "desc4", "local1", "horario1", "data"));
+//        eventos.add(new Evento("titulo5", "desc5", "local1", "horario1", "data"));
+//        return eventos;
+//    }
 
 
 }

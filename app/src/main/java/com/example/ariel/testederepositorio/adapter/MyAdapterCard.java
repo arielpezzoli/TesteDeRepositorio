@@ -1,6 +1,5 @@
 package com.example.ariel.testederepositorio.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ariel.testederepositorio.AtualizarEventoActivity;
 import com.example.ariel.testederepositorio.ClickRecycler;
@@ -23,24 +21,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHolderCard> {
 
     public static ClickRecycler clickRecycler;
-    Context contexto;
     private List<Evento> listaEventos;
 
     ListarEventoRecycler listarEventoRecycler;
     SearchCardActivity searchCardActivity;
+//    TesteFragment testeFragment;
 
-    public MyAdapterCard(Context ctx, List<Evento> list, ClickRecycler clickRecycler) {
-        this.contexto = ctx;
-        this.listaEventos = list;
-        this.clickRecycler = clickRecycler;
-    }
 
+    //  INICIO CONSTRUTORES
     public MyAdapterCard(SearchCardActivity searchCardActivity, List<Evento> list) {
         this.searchCardActivity = searchCardActivity;
         this.listaEventos = list;
@@ -53,7 +46,13 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
     }
 
 
+    //    construtor de teste
+    public MyAdapterCard(List<Evento> list) {
+        this.listaEventos = list;
+    }
 
+
+//  FIM CONSTRUTORES
 
     @Override
     public MyViewHolderCard onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -64,12 +63,13 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
     @Override
     public void onBindViewHolder(MyViewHolderCard viewHolder, final int position) {
-        Evento user = listaEventos.get(position);
-        viewHolder.textViewTitulo.setText(user.getTitulo_evento());
-        viewHolder.textViewDescricao.setText(user.getDescricao_evento());
-        viewHolder.textViewLocal.setText(user.getLocal_evento());
-        viewHolder.textViewHorario.setText(user.getHorario_evento());
-        viewHolder.textViewData.setText(user.getData_evento());
+        Evento evento = listaEventos.get(position);
+        viewHolder.textViewTitulo.setText(evento.getTitulo_evento());
+        viewHolder.textViewDescricao.setText(evento.getDescricao_evento());
+        viewHolder.textViewLocal.setText(evento.getLocal_evento());
+        viewHolder.textViewHorario.setText(evento.getHorario_evento());
+        viewHolder.textViewData.setText(evento.getData_evento());
+
 
         viewHolder.buttonExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,6 +158,15 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
             buttonExcluir = (Button) itemView.findViewById(R.id.btnExcluirCard);
             buttonEditar = (Button) itemView.findViewById(R.id.btnEditarCard);
+
+//            /**/
+//            if (listarEventoFragment != null) {
+//                buttonExcluir = itemView.findViewById(R.id.btnExcluirCard);
+//                buttonExcluir.setVisibility(View.INVISIBLE);
+//                buttonEditar = itemView.findViewById(R.id.btnEditarCard);
+//                buttonEditar.setVisibility(View.INVISIBLE);
+//            }
+//            /**/
 
         }
     }

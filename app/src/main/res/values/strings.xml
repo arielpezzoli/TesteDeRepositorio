@@ -62,4 +62,7 @@
     <string name="textViewHorarioEvento">Horario Evento</string>
     <string name="textViewDataEvento">Data Evento</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

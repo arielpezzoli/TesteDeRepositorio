@@ -2,6 +2,7 @@ package com.example.ariel.testederepositorio;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.ariel.testederepositorio.pacoteDeTeste.ListaCardFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -30,6 +32,12 @@ public class PaginaInicialActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_inicial);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        ListaCardFragment fragment = new ListaCardFragment();
+        transaction.replace(R.id.fragment_paginaInicial, fragment);
+        transaction.commit();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

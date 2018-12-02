@@ -1,50 +1,58 @@
-package com.example.ariel.testederepositorio;
+package com.example.ariel.testederepositorio.pacoteDeTeste;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.example.ariel.testederepositorio.ListarEventoRecycler;
+import com.example.ariel.testederepositorio.R;
 import com.example.ariel.testederepositorio.adapter.MyAdapterCard;
 import com.example.ariel.testederepositorio.model.Evento;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class SearchCardActivity extends AppCompatActivity implements ClickRecycler {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class ListaCardFragment extends Fragment {
 
     private RecyclerView recyclerView;
     MyAdapterCard adapter;
-    //    private List<User> listausers = new ArrayList<>();
     private ArrayList<Evento> listaEventos = new ArrayList<>();
 
 
+    public ListaCardFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_evento_recycler);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        View rootView = inflater.inflate(R.layout.fragment_lista_card, container, false);
+
+        recyclerView = rootView.findViewById(R.id.recycler_list_card);
+        StaggeredGridLayoutManager layoutManager =  new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-//        for (int i = 0; i < 5; i++) {
-//            listausers.add(User.carrega());
-//            listausers.add(ListaRecyclerCard.carrega());
-
-        Intent intent = getIntent();
-        String parametroPesquisa = intent.getStringExtra("pesquisa");
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("eventos");
-        Query pesquisa = reference.orderByChild("titulo_evento").equalTo(parametroPesquisa);
 
-        pesquisa.addValueEventListener(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             //é chamado sempre que consegue recuperar algum dado
             //DataSnapshot é o retorno do Firebase => resultado da consulta
@@ -54,8 +62,9 @@ public class SearchCardActivity extends AppCompatActivity implements ClickRecycl
                     Evento evento = ds.getValue(Evento.class);
                     evento.setId_evento(ds.getKey());
                     listaEventos.add(evento);
+//                    Log.d("Evento:", "evento"+evento.toString());
                 }
-                recyclerView.setAdapter(new MyAdapterCard(SearchCardActivity.this, listaEventos));
+                recyclerView.setAdapter(new MyAdapterCard(listaEventos));
             }
 
             @Override
@@ -65,17 +74,16 @@ public class SearchCardActivity extends AppCompatActivity implements ClickRecycl
         });
 
 
-//        adapter = new MyAdapterCard(this, listaEventos, this);
-        adapter = new MyAdapterCard(SearchCardActivity.this, listaEventos);
+        adapter = new MyAdapterCard(listaEventos);
         recyclerView.setAdapter(adapter);
 
+        return rootView;
     }
 
     @Override
-    public void onCustomClick(Object object) {
-        System.out.println("funciona");
-        Evento p = (Evento) object;
-        System.out.println("PEssoa = " + p.toString());
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save currently selected layout manager.
+        super.onSaveInstanceState(savedInstanceState);
     }
 
 }

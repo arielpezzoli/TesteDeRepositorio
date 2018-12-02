@@ -9,6 +9,9 @@
     tools:showIn="@layout/app_bar_pagina_inicial">
 
 
-
+    <FrameLayout
+        android:id="@+id/fragment_paginaInicial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>
