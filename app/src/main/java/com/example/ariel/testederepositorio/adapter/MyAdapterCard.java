@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.example.ariel.testederepositorio.AtualizarEventoActivity;
 import com.example.ariel.testederepositorio.ClickRecycler;
 import com.example.ariel.testederepositorio.ListarEventoRecycler;
+import com.example.ariel.testederepositorio.PaginaInicialActivity;
 import com.example.ariel.testederepositorio.R;
 import com.example.ariel.testederepositorio.SearchCardActivity;
 import com.example.ariel.testederepositorio.dao.ConfiguraFirebase;
+import com.example.ariel.testederepositorio.fragmentos.ListaCardFragment;
 import com.example.ariel.testederepositorio.model.Evento;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +32,7 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
     ListarEventoRecycler listarEventoRecycler;
     SearchCardActivity searchCardActivity;
-//    TesteFragment testeFragment;
+    ListaCardFragment lcf;
 
 
     //  INICIO CONSTRUTORES
@@ -47,7 +49,8 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
 
     //    construtor de teste
-    public MyAdapterCard(List<Evento> list) {
+    public MyAdapterCard(ListaCardFragment lcf, List<Evento> list) {
+        this.lcf = lcf;
         this.listaEventos = list;
     }
 
@@ -70,12 +73,15 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
         viewHolder.textViewHorario.setText(evento.getHorario_evento());
         viewHolder.textViewData.setText(evento.getData_evento());
 
+        if (lcf != null) {
+            viewHolder.buttonExcluir.setVisibility(View.INVISIBLE);
+            viewHolder.buttonEditar.setVisibility(View.INVISIBLE);
+        }
 
         viewHolder.buttonExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String mensagem = "Registro excluído com sucesso!";
-                //usa o objeto produto para fazer a exclusão
                 final Evento evento = listaEventos.get(position);
                 final DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
 
@@ -95,7 +101,9 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
                     }
                 });
+
             }
+
         });
 
         viewHolder.buttonEditar.setOnClickListener(new View.OnClickListener() {
@@ -105,16 +113,32 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
                 final Evento evento = listaEventos.get(position);
 
-                Intent intent = new Intent(listarEventoRecycler, AtualizarEventoActivity.class);
-                intent.putExtra("id_evento", evento.getId_evento());
-                intent.putExtra("titulo_evento", evento.getTitulo_evento());
-                intent.putExtra("descricao_evento", evento.getDescricao_evento());
-                intent.putExtra("local_evento", evento.getLocal_evento());
-                intent.putExtra("horario_evento", evento.getHorario_evento());
-                intent.putExtra("data_evento", evento.getData_evento());
+                if (listarEventoRecycler != null) {
+                    Intent intent = new Intent(listarEventoRecycler, AtualizarEventoActivity.class);
+                    intent.putExtra("id_evento", evento.getId_evento());
+                    intent.putExtra("titulo_evento", evento.getTitulo_evento());
+                    intent.putExtra("descricao_evento", evento.getDescricao_evento());
+                    intent.putExtra("local_evento", evento.getLocal_evento());
+                    intent.putExtra("horario_evento", evento.getHorario_evento());
+                    intent.putExtra("data_evento", evento.getData_evento());
 //                    Log.d("msg", "2");
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                listarEventoRecycler.startActivity(intent);
+                    listarEventoRecycler.startActivity(intent);
+                }
+
+                if (searchCardActivity != null) {
+
+                    Intent intent = new Intent(searchCardActivity, AtualizarEventoActivity.class);
+                    intent.putExtra("id_evento", evento.getId_evento());
+                    intent.putExtra("titulo_evento", evento.getTitulo_evento());
+                    intent.putExtra("descricao_evento", evento.getDescricao_evento());
+                    intent.putExtra("local_evento", evento.getLocal_evento());
+                    intent.putExtra("horario_evento", evento.getHorario_evento());
+                    intent.putExtra("data_evento", evento.getData_evento());
+
+                    searchCardActivity.startActivity(intent);
+                }
+
 
             }
         });
@@ -159,14 +183,14 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
             buttonExcluir = (Button) itemView.findViewById(R.id.btnExcluirCard);
             buttonEditar = (Button) itemView.findViewById(R.id.btnEditarCard);
 
-//            /**/
-//            if (listarEventoFragment != null) {
+            /**/
+//            if ( lcf != null) {
 //                buttonExcluir = itemView.findViewById(R.id.btnExcluirCard);
 //                buttonExcluir.setVisibility(View.INVISIBLE);
 //                buttonEditar = itemView.findViewById(R.id.btnEditarCard);
 //                buttonEditar.setVisibility(View.INVISIBLE);
 //            }
-//            /**/
+            /**/
 
         }
     }

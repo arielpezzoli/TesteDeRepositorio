@@ -1,4 +1,4 @@
-package com.example.ariel.testederepositorio.pacoteDeTeste;
+package com.example.ariel.testederepositorio.fragmentos;
 
 
 import android.os.Bundle;
@@ -64,7 +64,7 @@ public class ListaCardFragment extends Fragment {
                     listaEventos.add(evento);
 //                    Log.d("Evento:", "evento"+evento.toString());
                 }
-                recyclerView.setAdapter(new MyAdapterCard(listaEventos));
+                recyclerView.setAdapter(new MyAdapterCard(ListaCardFragment.this, listaEventos));
             }
 
             @Override
@@ -74,7 +74,7 @@ public class ListaCardFragment extends Fragment {
         });
 
 
-        adapter = new MyAdapterCard(listaEventos);
+        adapter = new MyAdapterCard(ListaCardFragment.this, listaEventos);
         recyclerView.setAdapter(adapter);
 
         return rootView;

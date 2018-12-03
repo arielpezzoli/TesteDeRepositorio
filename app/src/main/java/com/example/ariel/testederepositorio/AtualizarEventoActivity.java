@@ -23,7 +23,7 @@ public class AtualizarEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_atualizar_evento);
 
-        Intent intencao = getIntent();
+        final Intent intencao = getIntent();
 
         id = intencao.getStringExtra("id_evento");
         String titulo_evento = intencao.getStringExtra("titulo_evento");
@@ -74,8 +74,10 @@ public class AtualizarEventoActivity extends AppCompatActivity {
                     map.put("data_evento", data);
 
                 reference.child(id).updateChildren(map);
-//                reference.
-                Toast.makeText(getApplicationContext(), "atualizado", Toast.LENGTH_LONG);
+
+//                Intent voltar_search = new Intent(getApplicationContext(), PaginaInicialActivity.class);
+//                startActivity(voltar_search);
+//                Toast.makeText(getApplicationContext(), "atualizado", Toast.LENGTH_LONG);
 
                 finish();
 

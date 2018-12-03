@@ -25,6 +25,9 @@
 
     <string name="action_login">Login</string>
     <string name="action_sair">Sair</string>
+    <string name="action_sobre">Sobre</string>
+    <string name="img_sobre">ifrs</string>
+
 
 
     <!--activity linha-->
@@ -62,7 +65,6 @@
     <string name="textViewHorarioEvento">Horario Evento</string>
     <string name="textViewDataEvento">Data Evento</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="versao_app">Versão</string>
 
 </resources>

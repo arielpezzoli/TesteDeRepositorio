@@ -1,5 +1,6 @@
 package com.example.ariel.testederepositorio;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -13,20 +14,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import com.example.ariel.testederepositorio.pacoteDeTeste.ListaCardFragment;
+import com.example.ariel.testederepositorio.fragmentos.ListaCardFragment;
+import com.example.ariel.testederepositorio.fragmentos.SobreFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class PaginaInicialActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         SearchView.OnQueryTextListener {
 
-    //    listando dados do banco
-//    private ArrayList<Evento> listEventos = new ArrayList<>();
-//    ListView lista = null;
-//    ArrayAdapter<Evento> listAdapter = null;
-//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,20 +81,27 @@ public class PaginaInicialActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-//        PaginaLoginActivity paginaLoginActivity = new PaginaLoginActivity();
-//        if (paginaLoginActivity.usuarioLogado()) {
-//
-//        }
-//        noinspection SimplifiableIfStatement
+
+
         if (id == R.id.action_login) {
             Intent intent = new Intent(getApplicationContext(), PaginaLoginActivity.class);
             startActivity(intent);
         }
 
+
         if (id == R.id.action_sair) {
             FirebaseAuth.getInstance().signOut();
             finish();
         }
+        if (id == R.id.action_sobre) {
+//            Intent intent = new Intent(getApplicationContext(), PaginaSobreActivity.class);
+////            startActivity(intent);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            SobreFragment fragment = new SobreFragment();
+            transaction.replace(R.id.fragment_paginaInicial, fragment);
+            transaction.commit();
+        }
+
 
         if (id == R.id.action_pesquisa) {
             return true;
@@ -104,20 +110,32 @@ public class PaginaInicialActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+//        PaginaLoginActivity paginaLoginActivity = new PaginaLoginActivity();
+//        NavigationView navigationView = findViewById(R.id.nav_view);
+//        Menu menu = navigationView.getMenu();
+//        MenuItem itemUm = menu.findItem(R.id.nav_cadastro);
+//
+//
+//        if (!paginaLoginActivity.usuarioLogado()) {
+//            itemUm.setVisible(false);
+//        }
+
         if (id == R.id.nav_pagina_inicial) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            ListaCardFragment fragment = new ListaCardFragment();
+            transaction.replace(R.id.fragment_paginaInicial, fragment);
+            transaction.commit();
 
         } else if (id == R.id.nav_cadastro) {
             Intent intent = new Intent(getApplicationContext(), PaginaCadastroEventoActivity.class);
             startActivity(intent);
-//        } else if (id == R.id.nav_list) {
-//            Intent intent = new Intent(getApplicationContext(), ListarEventoActivity.class);
-//            startActivity(intent);
         } else if (id == R.id.nav_card_list) {
             Intent intent = new Intent(getApplicationContext(), ListarEventoRecycler.class);
             startActivity(intent);
