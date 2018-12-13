@@ -2,6 +2,7 @@ package com.example.ariel.testederepositorio.fragmentos;
 
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,7 @@ import com.example.ariel.testederepositorio.R;
 public class SobreFragment extends Fragment {
 
     private Button botao_versao_dialog;
+    private Button botao_mapas;
 
     public SobreFragment() {
         // Required empty public constructor
@@ -32,6 +34,8 @@ public class SobreFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sobre, container, false);
 
         botao_versao_dialog = view.findViewById(R.id.versao_app);
+        botao_mapas = view.findViewById(R.id.btn_mapas);
+
 
         botao_versao_dialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +49,17 @@ public class SobreFragment extends Fragment {
         });
 
 
-
-
-
+        botao_mapas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PackageManager packageManager = view.getContext().getPackageManager();
+                Intent intencao = new Intent(Intent.ACTION_VIEW);
+                intencao.setData(Uri.parse("geo:0,0?q=-30.0264276,-51.2233058(IFRS POA)?z=15"));
+                if (intencao.resolveActivity(packageManager) != null) {
+                    startActivity(intencao);
+                }
+            }
+        });
 
 
         return view;

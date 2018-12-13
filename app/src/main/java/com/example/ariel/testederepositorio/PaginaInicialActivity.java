@@ -2,6 +2,7 @@ package com.example.ariel.testederepositorio;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
@@ -21,6 +22,12 @@ import com.example.ariel.testederepositorio.fragmentos.SobreFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
+/*
+ * firebase
+ * email: ari@ari.com
+ * senha: 123456
+ * */
 
 public class PaginaInicialActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -83,6 +90,13 @@ public class PaginaInicialActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
+//        PaginaLoginActivity pga = new PaginaLoginActivity();
+//        NavigationView navigationView = findViewById(R.id.nav_view);
+//        Menu menu = navigationView.getMenu();
+//        MenuItem itemUm = menu.findItem(R.id.action_login);
+//        if (pga.usuarioLogado()) {
+//            itemUm.setVisible(false);
+//        }
         if (id == R.id.action_login) {
             Intent intent = new Intent(getApplicationContext(), PaginaLoginActivity.class);
             startActivity(intent);
@@ -92,6 +106,7 @@ public class PaginaInicialActivity extends AppCompatActivity
         if (id == R.id.action_sair) {
             FirebaseAuth.getInstance().signOut();
             finish();
+//            startActivity(new Intent(getApplicationContext(), PaginaInicialActivity.class));
         }
         if (id == R.id.action_sobre) {
 //            Intent intent = new Intent(getApplicationContext(), PaginaSobreActivity.class);

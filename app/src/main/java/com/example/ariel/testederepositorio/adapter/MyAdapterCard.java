@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ariel.testederepositorio.AtualizarEventoActivity;
 import com.example.ariel.testederepositorio.ClickRecycler;
 import com.example.ariel.testederepositorio.ListarEventoRecycler;
 import com.example.ariel.testederepositorio.PaginaInicialActivity;
+import com.example.ariel.testederepositorio.PaginaLoginActivity;
 import com.example.ariel.testederepositorio.R;
 import com.example.ariel.testederepositorio.SearchCardActivity;
 import com.example.ariel.testederepositorio.dao.ConfiguraFirebase;
@@ -65,7 +67,7 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolderCard viewHolder, final int position) {
+    public void onBindViewHolder(final MyViewHolderCard viewHolder, final int position) {
         Evento evento = listaEventos.get(position);
         viewHolder.textViewTitulo.setText(evento.getTitulo_evento());
         viewHolder.textViewDescricao.setText(evento.getDescricao_evento());
@@ -77,13 +79,18 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
             viewHolder.buttonExcluir.setVisibility(View.INVISIBLE);
             viewHolder.buttonEditar.setVisibility(View.INVISIBLE);
         }
+        if (searchCardActivity != null) {
+            viewHolder.buttonExcluir.setVisibility(View.INVISIBLE);
+            viewHolder.buttonEditar.setVisibility(View.INVISIBLE);
+        }
 
         viewHolder.buttonExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mensagem = "Registro excluído com sucesso!";
+//                final String mensagem = "Registro excluído com sucesso!";
                 final Evento evento = listaEventos.get(position);
                 final DatabaseReference reference = ConfiguraFirebase.getNo("eventos");
+
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -94,6 +101,7 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
                             notifyList();
 
                         }
+
                     }
 
                     @Override
@@ -101,8 +109,8 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
 
                     }
                 });
-
             }
+
 
         });
 
@@ -122,23 +130,21 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
                     intent.putExtra("horario_evento", evento.getHorario_evento());
                     intent.putExtra("data_evento", evento.getData_evento());
 //                    Log.d("msg", "2");
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     listarEventoRecycler.startActivity(intent);
                 }
 
-                if (searchCardActivity != null) {
-
-                    Intent intent = new Intent(searchCardActivity, AtualizarEventoActivity.class);
-                    intent.putExtra("id_evento", evento.getId_evento());
-                    intent.putExtra("titulo_evento", evento.getTitulo_evento());
-                    intent.putExtra("descricao_evento", evento.getDescricao_evento());
-                    intent.putExtra("local_evento", evento.getLocal_evento());
-                    intent.putExtra("horario_evento", evento.getHorario_evento());
-                    intent.putExtra("data_evento", evento.getData_evento());
-
-                    searchCardActivity.startActivity(intent);
-                }
-
+//                if (searchCardActivity != null) {
+//
+//                    Intent intent = new Intent(searchCardActivity, AtualizarEventoActivity.class);
+//                    intent.putExtra("id_evento", evento.getId_evento());
+//                    intent.putExtra("titulo_evento", evento.getTitulo_evento());
+//                    intent.putExtra("descricao_evento", evento.getDescricao_evento());
+//                    intent.putExtra("local_evento", evento.getLocal_evento());
+//                    intent.putExtra("horario_evento", evento.getHorario_evento());
+//                    intent.putExtra("data_evento", evento.getData_evento());
+//
+//                    searchCardActivity.startActivity(intent);
+//                }
 
             }
         });
@@ -161,6 +167,7 @@ public class MyAdapterCard extends RecyclerView.Adapter<MyAdapterCard.MyViewHold
     private void notifyList() {
         this.notifyDataSetChanged();
     }
+
 
     protected class MyViewHolderCard extends RecyclerView.ViewHolder {
         private TextView textViewTitulo;

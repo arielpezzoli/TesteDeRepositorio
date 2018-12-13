@@ -7,22 +7,27 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.ariel.testederepositorio.ListarEventoRecycler;
 import com.example.ariel.testederepositorio.R;
 import com.example.ariel.testederepositorio.adapter.MyAdapterCard;
+import com.example.ariel.testederepositorio.dao.ConfiguraFirebase;
 import com.example.ariel.testederepositorio.model.Evento;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -33,12 +38,12 @@ public class ListaCardFragment extends Fragment {
     private RecyclerView recyclerView;
     MyAdapterCard adapter;
     private ArrayList<Evento> listaEventos = new ArrayList<>();
+    private ArrayList<Evento> listaEventosDescendente = new ArrayList<>();
 
 
     public ListaCardFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,10 +52,12 @@ public class ListaCardFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_lista_card, container, false);
 
         recyclerView = rootView.findViewById(R.id.recycler_list_card);
-        StaggeredGridLayoutManager layoutManager =  new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("eventos");
+//        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+//        Query reference = mDatabase.child("eventos").orderByKey();
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -62,8 +69,9 @@ public class ListaCardFragment extends Fragment {
                     Evento evento = ds.getValue(Evento.class);
                     evento.setId_evento(ds.getKey());
                     listaEventos.add(evento);
-//                    Log.d("Evento:", "evento"+evento.toString());
+
                 }
+
                 recyclerView.setAdapter(new MyAdapterCard(ListaCardFragment.this, listaEventos));
             }
 

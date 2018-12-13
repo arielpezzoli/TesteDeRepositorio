@@ -32,12 +32,9 @@ public class MyCustomDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
 //                Log.d(TAG, "onClick: capturing input.");
-
-
                 getDialog().dismiss();
             }
         });
-
         return view;
     }
 

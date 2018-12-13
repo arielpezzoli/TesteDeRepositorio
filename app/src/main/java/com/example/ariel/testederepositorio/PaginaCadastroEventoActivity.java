@@ -41,7 +41,7 @@ public class PaginaCadastroEventoActivity extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 Toast.makeText(PaginaCadastroEventoActivity.this, "Sucesso ao cadastrar o evento!", Toast.LENGTH_SHORT).show();
                 limparCampos();
-                finish();
+//                finish();
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
